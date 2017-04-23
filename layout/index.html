@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>layout</title>
+	<style type="text/css">
+		*,
+		*:before,
+		*:after {
+	        box-sizing: border-box;
+	        margin: 0;
+	        padding: 0;
+	    }
+	    .clearfix:after {
+	    	display:block;
+	    	clear:both;
+	    	visibility:hidden;
+	    	height:0;
+	    	overflow:hidden;
+	    	content:".";
+	    }
+	    .wrap {
+			margin: 20px 10px;
+	    }
+	    .wrap-1 .left {
+	    	float: left;
+	    	width: 180px;
+	    	height: 150px;
+	    	background: red;
+	    }
+	    .wrap-1 .right {
+	    	height: 150px;
+	    	margin-left: 190px;
+	    	background: blue;
+	    }
+
+	    
+	    .wrap-2 .right {
+	    	float: right;
+	    	width: 180px;
+	    	height: 150px;
+	    	background: blue;
+	    }
+	    .wrap-2 .left {
+	    	height: 150px;
+	    	margin-right: 190px;
+	    	background: red;
+	    }
+
+	    .wrap-3 .left {
+	    	float: left;
+	    	width: 180px;
+	    	height: 150px;
+	    	background: blue;
+	    }
+	    .wrap-3 .right {
+	    	float: right;
+	    	width: 180px;
+	    	height: 150px;
+	    	background: red;
+	    }
+	    .wrap-3 .main {
+	    	height: 150px;
+	    	margin-left: 190px;
+	    	margin-right: 190px;
+	    	background: green;
+	    }
+
+	</style>
+</head>
+
+<body>
+	<!-- 自适应的div需要放在浮动div的后面 -->
+	<!-- 左侧定宽右侧自适应 -->
+	<div class="wrap wrap-1">
+		<div class="left">
+			左侧定宽
+		</div>
+		<div class="right">
+			右侧自适应
+		</div>
+	</div>
+	<!-- 右侧定宽左侧自适应 -->
+	<div class="wrap wrap-2">	
+		<div class="right">
+			右侧定宽
+		</div>
+		<div class="left">
+			左侧自适应
+		</div>
+	</div>
+	<!-- 左右侧定宽中间自适应 -->
+	<div class="wrap wrap-3">	
+		<div class="left">
+			左侧定宽
+		</div>
+		<div class="right">
+			右侧定宽
+		</div>
+		<div class="main">
+			中间自适应
+		</div>
+	</div>
+</body>
+</html>

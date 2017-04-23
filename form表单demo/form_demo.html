@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-cmn">
+<head>
+	<meta charset="UTF-8">
+	<title>form demo</title>
+	<style>
+		/* reset */
+		*, *:before, *:after {-webkit-box-sizing: border-box;-moz-box-sizing: border-box;box-sizing: border-box;}
+		html,body,h1,h2,h3,h4,h5,h6,div,dl,dt,dd,ul,ol,li,p,blockquote,pre,hr,figure,table,caption,th,td,form,fieldset,legend,input,button,textarea,menu{margin:0;padding:0;}
+		header,footer,section,article,aside,nav,hgroup,address,figure,figcaption,menu,details{display:block;}
+		table{border-collapse:collapse;border-spacing:0;}
+		caption,th{text-align:left;font-weight:normal;}
+		html,body,fieldset,img,iframe,abbr{border:0;}
+		i,cite,em,var,address,dfn{font-style:normal;}
+		[hidefocus],summary{outline:0;}
+		li{list-style:none;}
+		h1,h2,h3,h4,h5,h6,small{font-size:100%;}
+		sup,sub{font-size:83%;}
+		pre,code,kbd,samp{font-family:inherit;}
+		q:before,q:after{content:none;}
+		textarea{overflow:auto;resize:none;}
+		label,summary{cursor:default;}
+		a,button{cursor:pointer;}
+		h1,h2,h3,h4,h5,h6,em,strong,b{font-weight:bold;}
+		del,ins,u,s,a,a:hover{text-decoration:none;}
+		body,textarea,input,button,select,keygen,legend{font:12px/1.14 arial,\5b8b\4f53;color:#333;outline:0;}
+		body{background:#fff;}
+		a,a:hover{color:#333;}
+		/* function */
+		.f-cb:after,.f-cbli li:after{display:block;clear:both;visibility:hidden;height:0;overflow:hidden;content:".";}
+		.f-cb,.f-cbli li{zoom:1;}
+		/* form */
+		.g-doc {
+			padding: 10px;
+		}
+
+		.u-title {
+			font-size: 21px;
+			text-align: center;
+		}
+		
+		.g-bd {
+			margin-top: 20px;
+		}
+
+		.m-signup {
+			width: 480px;
+			margin: 0 auto;
+			padding: 10px;
+			border: 1px solid #333;
+		}
+
+		.m-signup .formitm {
+			margin-top: 20px;
+			line-height: 32px;
+		}
+		
+		.m-signup .lab {
+			float: left;
+			width: 80px;
+			text-align: right;
+		}
+
+		.m-signup .ipt {
+			margin-left: 90px;
+		}
+		
+		.m-signup .u-ipt {
+			width: 80%;
+			height: 32px;
+			padding: 0 10px;
+			border: 1px solid #eee;
+			overflow: hidden;
+		}
+
+		.m-signup .u-ipt:focus {
+			border-color: #2b99ff;
+		}
+		
+		.m-signup .u-btn {
+			display:inline-block;
+			height: 32px;
+			padding: 0 12px;
+			line-height: 32px;
+			border: 1px solid #2d88bf;
+			color: #fff;
+			text-align: center;
+			vertical-align: middle;
+			cursor: pointer;
+			background: #54aede;
+		}
+
+		.u-btn:hover, .u-btn:focus {
+			background:#399dd8;
+		}
+
+		.u-btn:active {
+			box-shadow:inset 0 1px 4px rgba(0,0,0,0.2);
+		}
+
+	</style>
+</head>
+<body>
+	<div class="g-doc">
+	    <div class="g-hd">
+	    	<h2 class="u-title">form demo</h2>
+	    </div>
+	    <div class="g-bd">
+	    	<div class="m-signup">
+				<form onsubmit="return false;" id="j-login">
+		            <h2>欢迎注册</h2>
+		            <div class="formitm">
+		                <label class="lab" for="j-username">账号：</label>
+		                <div class="ipt">
+		                    <input type="text" class="u-ipt" id="j-username"><span class="domain">@163.com</span>
+		                </div>
+		            </div>
+		            <div class="formitm">
+		                <label class="lab" for="j-password">初始密码：</label>
+		                <div class="ipt">
+		                    <input type="text" class="u-ipt" id="j-password">
+		                </div>
+		            </div>
+		            <div class="formitm">
+		                <label class="lab" for="j-confirm">确认密码：</label>
+		                <div class="ipt">
+		                    <input type="text" class="u-ipt" id="j-confirm">
+		                </div>
+		            </div>
+		            <div class="formitm">
+		            	<div class="ipt">
+		            		<button class="u-btn" type="button">立即注册</button>
+		            	</div>
+		            </div>
+		        </form>	
+	    	</div>
+	    </div>
+	</div>
+</body>
+</html>

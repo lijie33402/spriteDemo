@@ -1,0 +1,141 @@
+##代码
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Lazy Loading</title>
+	<style type="text/css">
+		h2 {
+			margin: 0;
+			text-align: center;
+			color: #b3b3b3;
+		}
+		
+		.bg {
+			position: relative;
+			width: 300px;
+			height: 300px;
+			margin: 30px auto;
+		}
+
+		.bg:after {
+			content: '';
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100%;
+			height: 100%;
+			background-color: #ddd;
+		}
+
+		.load {
+			background-position: center center;
+			background-repeat: no-repeat;
+			background-size: cover;
+		}
+
+		.load:nth-of-type(1) {
+			background-image: url('https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=3880199741,3854322934&fm=58');
+		}
+		
+		.load:nth-of-type(2) {
+			background-image: url('https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2181549488,3047915060&fm=58');
+		}
+
+		.load:nth-of-type(3) {
+			background-image: url('https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=674112551,3667566855&fm=58');
+		}
+
+		.load:nth-of-type(4) {
+			background-image: url('https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=1002962304,3697119945&fm=58');
+		}
+
+		.load:nth-of-type(5) {
+			background-image: url('https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=1075023460,2115724544&fm=58');
+		}
+
+		.load:nth-of-type(6) {
+			background-image: url('https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=527365068,2154775773&fm=58');
+		}
+		
+		.bg.load:after {
+			display: none;
+		}
+
+	</style>
+</head>
+<body>
+	<h2>图片懒加载demo</h2>
+	<div class="bg"></div>
+	<div class="bg"></div>
+	<div class="bg"></div>
+	<div class="bg"></div>
+	<div class="bg"></div>
+	<div class="bg"></div>
+
+	<script>
+		var bgs = document.getElementsByClassName('bg'),
+			len = bgs.length,
+			wHeight,
+			wScrollTop,
+			n = 0;
+		// throttle函数节流
+		function throttle(fn, delay, atleast) {
+		    var timeout = null,
+			startTime = new Date();
+		    return function() {
+				var curTime = new Date();
+				clearTimeout(timeout);
+				if (curTime - startTime >= atleast) {
+				    fn();
+				    startTime = curTime;
+				} else {
+				    timeout = setTimeout(fn, delay);
+				}
+		    }
+		}
+		// 第一种方法：通过offsetTop和scrollTop来判断【包含滚动内容的父元素】的滚动子元素是否在父元素视口中，当然一般【包含滚动内容的父元素】就是指视口document.documentElement,
+		function checkInViewportByOffset(el, viewHeight, viewScrollTop) {
+			//el指滚动子元素，viewHeight指父元素客户区大小，viewScrollTop父元素滚动大小
+			if(el.offsetTop < viewHeight + viewScrollTop) {
+				return true;
+			} else {
+				return false;
+			}
+		}
+		// 第二种方法：通过getBoundingClientRect()方法来判断
+		function checkInViewportByBounding(el, viewHeight) {
+			var rect = el.getBoundingClientRect();
+            return rect.top <= viewHeight;
+		}
+		var lazyLoad = function() {
+			console.log('检测');
+			wHeight = document.documentElement.clientHeight;
+			// 因为在chrome下document.documentElement.scrollTop为0，视口的scroll是定义在body上的，因此需要下面这种写法。
+			wScrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+			for(var i = n; i < len; i++) {
+				// if(checkInViewportByOffset(bgs[i], wHeight, wScrollTop)) {
+				// 	bgs[i].className += " " + "load";
+				// 	n = n + 1;
+				// }
+
+				if (checkInViewportByBounding(bgs[i], wHeight)) {
+					bgs[i].className += " " + "load";
+					n = n + 1;
+				}
+			}
+		}
+		lazyLoad();
+		window.addEventListener('scroll', throttle(lazyLoad, 500, 1000), false);
+	</script>
+</body>
+</html>
+```
+
+##参考资料
+1.[知乎](https://zhuanlan.zhihu.com/p/25455672)
+
+2.[difference-between-throttling-and-debouncing-a-function](http://stackoverflow.com/questions/25991367/difference-between-throttling-and-debouncing-a-function)
+
+3.[理解throttle和debounce的demo](http://demo.nimius.net/debounce_throttle/)
